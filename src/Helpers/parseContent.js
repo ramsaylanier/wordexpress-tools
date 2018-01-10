@@ -5,15 +5,12 @@ export default function (content, Shortcodes) {
   const shortcodes = Object.keys(Shortcodes)
   let isCodeTag = false
 
-  console.log(shortcodes)
-
   const parsedContent = splitContent.reduce((content, line) => {
     // check if line is a shortcode
 
     if (!isCodeTag) {
       if (line[0] === '[') {
         const shortcode = line.match(/([[])\w+/g).toString().substr(1)
-        console.log(shortcode)
         if (shortcodes.indexOf(shortcode) >= 0) {
           line = Shortcodes[shortcode](line)
         }

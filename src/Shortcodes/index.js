@@ -1,6 +1,7 @@
 import {map} from 'lodash'
 import RenderCaptionShortCode from './caption'
 import RenderCTA from './cta'
+import RenderGist from './gist'
 
 export const GetShortCode = line => {
   const shortcodeObj = {
@@ -29,7 +30,8 @@ export const GetShortCode = line => {
 
 const Shortcodes = {
   caption: RenderCaptionShortCode,
-  cta: RenderCTA
+  cta: RenderCTA,
+  gist: RenderGist
 }
 
 export default Shortcodes
