@@ -1,3 +1,6 @@
+# 1.3.0
+Add gallery shortcode
+
 # 1.2.0
 Added avatar link helper
 

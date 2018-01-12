@@ -2,6 +2,7 @@ import {map} from 'lodash'
 import RenderCaptionShortCode from './caption'
 import RenderCTA from './cta'
 import RenderGist from './gist'
+import RenderGallery from './gallery'
 
 export const GetShortCode = line => {
   const shortcodeObj = {
@@ -13,11 +14,14 @@ export const GetShortCode = line => {
   // get shortcode from line (gets everything in between the first set of square brackets)
   shortcodeObj.shortcode = line.match(/\[([^\]]*)\]/g)[0].toString()
 
-  // get content between the opening and closing shortcode tags
-  shortcodeObj.content = line.match(/\](.*?)\[/g).toString().slice(1, -1)
-
   // get array of shortcode parameters
   const params = shortcodeObj.shortcode.match(/[\w-]+="[^"]*"/g)
+
+  // get content between the opening and closing shortcode tags
+  const content = line.match(/\](.*?)\[/g)
+  if (content) {
+    shortcodeObj.content = content.toString().slice(1, -1)
+  }
 
   // turn params into key/value pairs
   map(params, param => {
@@ -31,7 +35,8 @@ export const GetShortCode = line => {
 const Shortcodes = {
   caption: RenderCaptionShortCode,
   cta: RenderCTA,
-  gist: RenderGist
+  gist: RenderGist,
+  gallery: RenderGallery
 }
 
 export default Shortcodes
